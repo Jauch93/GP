@@ -1,10 +1,11 @@
 import RPi.GPIO as GPIO
+import time
 
 class Actor(object):
 
 	def __init__(self, pinNr):
 		self.pinNr = pinNr
-		self.autoMode = False
+		self.isAuto = False
 		self.isOn = False
 
 		GPIO.setmode(GPIO.BOARD)
@@ -18,9 +19,20 @@ class Actor(object):
 
 	def turnOff(self):
 		self.isOn = False
+		self.updatePin()
+
+	def turnOn(self):
+		self.isOn = True
+		self.updatePin()
 
 	def manualOverride(self):
+		self.stopAuto()
+		time.sleep(1)
 		self.isOn = not self.isOn
+		self.updatePin()
+
+	def updatePin(self):
 		GPIO.output(self.pinNr, self.isOn)
 
-
+	def stopAuto(self):
+		self.isAuto = False
