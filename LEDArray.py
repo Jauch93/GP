@@ -35,3 +35,5 @@ class LEDArray(Actor):
 			else: #Check if lights need to be turned On
 				if currTime.hour >= self.switchOnTime:
 					self.turnOn()
+
+			time.sleep(60)
