@@ -22,6 +22,6 @@ class Grow:
 	def endGrow(self):
 		self.isActive = False
 
-	def startFlowerPhase(self)
+	def startFlowerPhase(self):
 		if self.flowerDay == 0:
 			self.flowerDay = self.growDay

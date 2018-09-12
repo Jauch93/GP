@@ -5,10 +5,10 @@ import thread
 
 class LEDArray(Actor):
 
-	def __init__(self, switchOnTime, duration, pinNr):
+	def __init__(self, pinNr):
 		super(LEDArray, self).__init__(pinNr)
-		self.switchOnTime = switchOnTime
-		self.duration = duration
+		self.switchOnTime = 18
+		self.duration = 18
 
 	def getSwitchOnTime(self):
 		return self.switchOnTime
