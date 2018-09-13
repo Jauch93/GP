@@ -4,14 +4,14 @@ import thread
 
 class Ventilation(Actor):
 	def __init__(self, pinNr, tf_sensor):
-		super(self, Ventilation).__init__(pinNr)
+		super(Ventilation, self).__init__(pinNr)
 		self.tf_sensor = tf_sensor
-		self.criticHumidty = 60
+		self.criticHumidity = 60
 		self.criticTemp = 23
 
 	def __automatic(self):
 		while self.isAuto:
-			if (tf_sensor.getHumidity() > self.criticHumidity) or (tf_sensor.getTemperature() > self.criticTemp):
+			if (self.tf_sensor.getHumidity() > self.criticHumidity) or (self.tf_sensor.getTemperature() > self.criticTemp):
 				self.turnOn()
 			else:
 				self.turnOff()

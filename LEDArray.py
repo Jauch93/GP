@@ -30,10 +30,13 @@ class LEDArray(Actor):
 		while self.isAuto:
 			currTime = datetime.datetime.now()
 			if(self.isOn): #Check if Lights need to be turned off
-				if currTime.hour >= ((self.switchOnTime + self.duration) % 24):
+				if currTime.hour >= self.calcSwitchOffTime():
 					self.turnOff()
 			else: #Check if lights need to be turned On
 				if currTime.hour >= self.switchOnTime:
 					self.turnOn()
 
 			time.sleep(60)
+
+	def calcSwitchOffTime(self):
+		return ((self.switchOnTime + self.duration)%24)

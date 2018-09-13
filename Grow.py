@@ -1,10 +1,12 @@
 import datetime
+import thread
+import time
 
 class Grow:
 
-	def __init__(self, sortName):
+	def __init__(self):
 		self.isActive = True
-		self.sortName = sortName
+		self.sortName = "TEST"
 		self.growDay = 1
 		self.flowerDay = 0
 		self.Ertrag = 0
@@ -17,7 +19,7 @@ class Grow:
 	def __countDays(self):
 		while self.isActive:
 			self.growDay += 1
-			sleep(24*3600)
+			time.sleep(24*3600)
 
 	def endGrow(self):
 		self.isActive = False

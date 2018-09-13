@@ -4,14 +4,14 @@ import time
 
 class Watering(Actor):
 	def __init__(self, pinNr):
-		super(self, Watering).__init__(pinNr)
+		super(Watering, self).__init__(pinNr)
 		self.amount = 1 #Amount of Water in Liters
 		self.propK = 60 #Amount of Seconds to get the amount of 1 Liter
 		self.wateringTime = 9
 
 	def startWaterCycle(self):
 		self.turnOn()
-		sleep(self.amount * self.propK)
+		time.sleep(self.amount * self.propK)
 		self.turnOff()
 
 	def startAuto(self):
@@ -23,7 +23,7 @@ class Watering(Actor):
 			currTime = datetime.datetime.now()
 			if currTime.hour == self.wateringTime:
 				self.startWaterCycle()
-				sleep(3600)
+				time.sleep(3600)
 
 	def setAmount(self, amount):
 		self.amount = amount
