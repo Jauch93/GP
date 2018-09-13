@@ -3,7 +3,7 @@ from DHT11 import *
 from Ventilation import *
 from Watering import *
 from Grow import *
-from gui import *
+from gui_MainWindow import *
 import time
 import RPi.GPIO as GPIO
 
