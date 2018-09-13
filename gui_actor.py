@@ -8,6 +8,11 @@ class ActorGui(object):
 	def buildGui(self):
 		pass
 
+	def fullscreen(self):
+		w,h = self.master.winfo_screenwidth(), self.master.winfo_screenheight()
+		self.master.geometry("%dx%d+0+0" % (w,h))
+		self.master.attributes('-zoomed', True)
+
 	def swapButtonColors(self):
 		if self.actor.isOn:
 			self.onButton.configure(bg = "green")

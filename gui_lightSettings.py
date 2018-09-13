@@ -7,6 +7,7 @@ class LightSettings(ActorGui):
 
 	def buildGui(self):
 		self.master = Tk(className = "LichtSteuerung")
+		self.fullscreen()
 
 		for i in range (0, 2):
 			self.master.columnconfigure(i, weight = 1)

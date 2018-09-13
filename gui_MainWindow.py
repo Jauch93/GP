@@ -17,12 +17,17 @@ class MainWindow:
 
 	def buildGui(self):
 		self.master = Tk(className = "GrowBox")
+		w,h = self.master.winfo_screenwidth(), self.master.winfo_screenheight()
+		self.master.geometry("%dx%d+0+0" % (w,h))
+		self.master.attributes('-zoomed', True)
 		for i in range (0,3):
 			self.master.columnconfigure(i, weight = 1)
 		for i in range (0,5):
 			self.master.rowconfigure(i, weight = 1)
 
 		self.button_TF = Button(self.master, text = "TF_SENSOR")
+		self.updateTF()
+		self.button_TF.bind("<Button-1>", self.updateTF)
 		self.button_TF.grid(row = 0, column = 0)
 
 		self.button_grow = Button(self.master, text = "GROW")
@@ -49,6 +54,12 @@ class MainWindow:
 		self.button_allOff.grid(row = 4, column = 2)
 
 		self.master.mainloop()
+	def updateTF(self, *args):
+		T = self.growBox.getDHT11().getTemperature()
+		RHE = self.growBox.getDHT11().getHumidity()
+		s = str(T) + "C " + str(RHE) + "%"
+		self.button_TF.configure(text = s)
+
 
 	def turnAllAutoOn(self, *args):
 		self.growBox.turnAllAutoOn()

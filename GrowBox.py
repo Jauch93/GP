@@ -22,6 +22,9 @@ class GrowBox:
 	def startGrow(self):
 		self.activeGrow = Grow()
 
+	def getDHT11(self):
+		return self.tf_sensor
+
 	def getLight(self):
 		return self.light
 

@@ -7,6 +7,7 @@ class WaterSettings(ActorGui):
 
 	def buildGui(self):
 		self.master = Tk(className = "WasserSteuerung")
+		self.fullscreen()
 
 		for i in range (0, 2):
 			self.master.columnconfigure(i, weight = 1)
@@ -19,8 +20,8 @@ class WaterSettings(ActorGui):
 		self.waterTime.grid(row = 0, column = 1)
 
 		Label(self.master, text = "Menge [cl]: ").grid(row = 1, column = 0)
-		self.amount = Scale(self.master, from_ = 0, to = 100, orient = HORIZONTAL)
-		self.amount.set(self.actor.getAmount()*100)
+		self.amount = Scale(self.master, from_ = 0, to = 200, orient = HORIZONTAL)
+		self.amount.set(self.actor.getAmount())
 		self.amount.grid(row = 1, column = 1)
 
 		self.applyButton = Button(self.master, text = "Apply")
@@ -48,7 +49,7 @@ class WaterSettings(ActorGui):
 		self.master.mainloop()
 
 	def applyValues(self, *args):
-		self.actor.setWateringTime(self.waterTime.get()/100)
+		self.actor.setWateringTime(self.waterTime.get())
 		self.actor.setAmount(self.amount.get())
 		self.swapButtonColors()
 

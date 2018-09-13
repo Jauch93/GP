@@ -16,7 +16,7 @@ class Ventilation(Actor):
 				self.turnOn()
 			else:
 				self.turnOff()
-		time.sleep(5)
+			time.sleep(1)
 
 	def startAuto(self):
 		self.isAuto = True
