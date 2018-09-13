@@ -11,9 +11,6 @@ class Actor(object):
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(pinNr, GPIO.OUT)
 
-	def __del__(self):
-		GPIO.setup(pinNr, GPIO.IN)
-
 	def getPinNr(self):
 		return self.pinNr
 

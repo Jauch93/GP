@@ -17,7 +17,12 @@ class GrowBox:
 		self.gui = MainWindow(self)
 
 	def __del__(self):
+		del self.tf_Sensor
+		del self.light
+		del self.venti
+		del self.water
 		GPIO.cleanup()
+		print("GPIOs clean")
 
 	def startGrow(self):
 		self.activeGrow = Grow()

@@ -12,11 +12,15 @@ class Ventilation(Actor):
 
 	def __automatic(self):
 		while self.isAuto:
-			if (self.tf_sensor.getHumidity() > self.criticHumidity) or (self.tf_sensor.getTemperature() > self.criticTemp):
+			T = self.tf_sensor.getTemperature()
+			H = self.tf_sensor.getHumidity()
+			if H > self.criticHumidity:
+				self.turnOn()
+			elif T > self.criticTemp:
 				self.turnOn()
 			else:
 				self.turnOff()
-			time.sleep(1)
+			time.sleep(5)
 
 	def startAuto(self):
 		self.isAuto = True

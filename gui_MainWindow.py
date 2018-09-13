@@ -15,6 +15,9 @@ class MainWindow:
 
 		self.buildGui()
 
+	def on_closing():
+		del self.growBox
+
 	def buildGui(self):
 		self.master = Tk(className = "GrowBox")
 		w,h = self.master.winfo_screenwidth(), self.master.winfo_screenheight()
@@ -54,6 +57,9 @@ class MainWindow:
 		self.button_allOff.grid(row = 4, column = 2)
 
 		self.master.mainloop()
+
+		self.master.protocol("WM_DELETE_WINDOW", on_closing)
+
 	def updateTF(self, *args):
 		T = self.growBox.getDHT11().getTemperature()
 		RHE = self.growBox.getDHT11().getHumidity()

@@ -14,12 +14,12 @@ class DHT11(Sensor):
 	def getHumidity(self):
 		while(not self. __getData()):
 			pass
-		return self.Humidity
+		return int(self.Humidity)
 
 	def getTemperature(self):
 		while(not self.__getData()):
 			pass
-		return self.Temperature
+		return int(self.Temperature)
 
 	def __getData(self):	#Private Methode
 		GPIO.setup(self.pinNr, GPIO.OUT)
