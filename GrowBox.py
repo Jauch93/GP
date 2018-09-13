@@ -36,3 +36,25 @@ class GrowBox:
 
 	def getGrow(self):
 		return self.activeGrow
+
+	def turnAllOff(self):
+		self.turnAllAutoOff()
+		self.light.turnOff()
+		self.water.turnOff()
+		self.venti.turnOff()
+
+	def turnAllOn(self):
+		self.turnAllAutoOff()
+		self.light.turnOn()
+		self.water.turnOn()
+		self.venti.turnOn()
+
+	def turnAllAutoOff(self):
+		self.light.stopAuto()
+		self.water.stopAuto()
+		self.venti.stopAuto()
+
+	def turnAllAutoOn(self):
+		self.light.startAuto()
+		self.water.startAuto()
+		self.venti.startAuto()

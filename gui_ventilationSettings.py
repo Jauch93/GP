@@ -1,31 +1,28 @@
 from Tkinter import *
 from gui_actor import *
 
-class LightSettings(ActorGui):
+class VentilationSettings(ActorGui):
 	def __init__(self, actor):
-		super(LightSettings, self).__init__(actor)
+		super(VentilationSettings, self).__init__(actor)
 
 	def buildGui(self):
-		self.master = Tk(className = "LichtSteuerung")
+		self.master = Tk(className = "LueftungsSteuerung")
 
 		for i in range (0, 2):
 			self.master.columnconfigure(i, weight = 1)
 		for i in range(0, 3):
 			self.master.rowconfigure(i, weight = 1)
 
-		Label(self.master, text = "StartZeit: ").grid(row = 0, column = 0)
-		self.startTime = Scale(self.master, from_ = 0, to = 23, orient = HORIZONTAL)
-		self.startTime.set(self.actor.getSwitchOnTime())
-		self.startTime.grid(row = 0, column = 1)
+		Label(self.master, text = "Kritische Temperatur: ").grid(row = 0, column = 0)
+		self.critTemp = Scale(self.master, from_ = 10, to = 30, orient = HORIZONTAL)
+		self.critTemp.set(self.actor.getCriticTemperature())
+		self.critTemp.grid(row = 0, column = 1)
 
-		Label(self.master, text = "BrennDauer: ").grid(row = 1, column = 0)
-		self.duration = Scale(self.master, from_ = 1, to = 24, orient = HORIZONTAL)
-		self.duration.set(self.actor.getDuration())
-		self.duration.grid(row = 1, column = 1)
+		Label(self.master, text = "Kritische RHE: ").grid(row = 1, column = 0)
+		self.critHumidity = Scale(self.master, from_ = 0, to = 100, orient = HORIZONTAL)
+		self.critHumidity.set(self.actor.getCriticHumidity())
+		self.critHumidity.grid(row = 1, column = 1)
 
-		Label(self.master, text = "AusschaltZeit: ").grid(row = 2, column = 0)
-		self.switchOffTime = Label(self.master, text = self.actor.calcSwitchOffTime())
-		self.switchOffTime.grid(row = 2, column = 1)
 
 		self.applyButton = Button(self.master, text = "Apply")
 		self.applyButton.bind("<Button-1>", self.applyValues)
@@ -52,8 +49,8 @@ class LightSettings(ActorGui):
 		self.master.mainloop()
 
 	def applyValues(self, *args):
-		self.actor.setSwitchOnTime(self.startTime.get())
-		self.actor.setDuration(self.duration.get())
+		self.actor.setCriticTemperature(self.critTemp.get())
+		self.actor.setCriticHumidity(self.critHumidity.get())
 		self.swapButtonColors()
-		self.switchOffTime.config(text = self.actor.calcSwitchOffTime())
+
 

@@ -1,6 +1,7 @@
 from Actor import *
 import thread
 import time
+import datetime
 
 class Watering(Actor):
 	def __init__(self, pinNr):
@@ -23,7 +24,7 @@ class Watering(Actor):
 			currTime = datetime.datetime.now()
 			if currTime.hour == self.wateringTime:
 				self.startWaterCycle()
-				time.sleep(3600)
+				#time.sleep(3600)
 
 	def setAmount(self, amount):
 		self.amount = amount
