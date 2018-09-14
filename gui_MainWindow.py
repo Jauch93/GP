@@ -3,6 +3,7 @@ from gui_actor import *
 from gui_lightSettings import *
 from gui_ventilationSettings import *
 from gui_waterSettings import *
+from gui_growSettings import *
 
 class MainWindow:
 	def __init__(self, growBox):
@@ -34,6 +35,7 @@ class MainWindow:
 		self.button_TF.grid(row = 0, column = 0)
 
 		self.button_grow = Button(self.master, text = "GROW")
+		self.button_grow.bind("<Button-1>", self.startGrowSettings)
 		self.button_grow.grid(row = 0, column = 1)
 
 		self.button_light = Button(self.master, text = "LICHT")
@@ -72,6 +74,9 @@ class MainWindow:
 
 	def turnAllOff(self, *args):
 		self.growBox.turnAllOff()
+
+	def startGrowSettings(self, *args):
+		GS = GrowSettings(self.grow)
 
 	def startWaterSettings(self, *args):
 		WS = WaterSettings(self.water)
